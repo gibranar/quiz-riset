@@ -14,5 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+})->name('index');
+
+Route::get('/landing', function () {
+    return view('index');
+});
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+Route::get('/forgot', function () {
+    return view('forgot.send');
+})->name('forgot');
+
+Route::get('/forgot/reset', function () {
+    return view('forgot.reset');
+})->name('reset');
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/user', function () {
+        return view('user.dashboard');
+    })->name('dashboard.user');
+    Route::get('/test', function () {
+        return view('user.test');
+    })->name('dashboard.test');
 });
